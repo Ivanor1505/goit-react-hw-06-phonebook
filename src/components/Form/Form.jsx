@@ -7,6 +7,8 @@ import {
   StyledField,
   StyledErrorMessage,
 } from './Form.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContactSlice, getContacts } from 'redux/contactsSlice';
 
 const formSchema = Yup.object({
   name: Yup.string()
@@ -23,7 +25,24 @@ const formSchema = Yup.object({
     .required('Phone number is required'),
 });
 
-export const AddContactForm = ({ onAdd }) => {
+export const AddContactForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+
+  const addContact = contact => {
+    if (checkDuplicate(contact)) {
+      alert('the contact already exists');
+      return;
+    }
+    dispatch(addContactSlice(contact));
+  };
+
+  function checkDuplicate(contact) {
+    return contacts.some(
+      element => contact.name.toLowerCase() === element.name.toLowerCase()
+    );
+  }
+
   return (
     <Formik
       initialValues={{
@@ -32,7 +51,7 @@ export const AddContactForm = ({ onAdd }) => {
       }}
       validationSchema={formSchema}
       onSubmit={(values, { resetForm }) => {
-        onAdd(values);
+        addContact(values);
         resetForm();
       }}
     >

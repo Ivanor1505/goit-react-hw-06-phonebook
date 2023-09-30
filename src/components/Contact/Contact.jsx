@@ -1,13 +1,21 @@
-import React from 'react';
+import { useDispatch } from 'react-redux';
+import { removeContactSlice } from 'redux/contactsSlice';
 import { Button, CotactItem } from './Contact.styled';
 
-export const Contact = ({ name, number, id, onDelete }) => {
+export const Contact = ({ contact }) => {
+  const dispatch = useDispatch();
+
   return (
     <CotactItem>
       <p>
-        {name}: {number}
+        {contact.name}: {contact.number}
       </p>
-      <Button onClick={() => onDelete(id)}>Delete</Button>
+      <Button
+        onClick={e => dispatch(removeContactSlice(e.target.id))}
+        id={contact.id}
+      >
+        Delete
+      </Button>
     </CotactItem>
   );
 };
