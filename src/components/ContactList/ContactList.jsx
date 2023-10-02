@@ -20,8 +20,8 @@ export const ContactList = () => {
 
   return (
     <List>
-      {filterByName().map(element => {
-        return <Contact key={element.id} contact={element} />;
+      {filterByName().map(filtredContact => {
+        return <Contact key={filtredContact.id} contact={filtredContact} />;
       })}
     </List>
   );
