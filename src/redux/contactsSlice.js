@@ -3,14 +3,9 @@ import { nanoid } from 'nanoid';
 import { persistReducer } from "redux-persist";
 import storage from 'redux-persist/lib/storage';
 
-
-const initialContacts =  [{ id: nanoid(), name: 'Ivan', number: '111-11-11' },
-    { id: nanoid(), name: 'Vasyl', number: '222-22-22' }
-  ];
-
 const Slice = createSlice({
     name: "contacts",
-    initialState: { contactsList: initialContacts},
+    initialState: [],
     reducers: {
          addContactSlice: {reducer(state, action) {
              state.contactsList.push(action.payload);
