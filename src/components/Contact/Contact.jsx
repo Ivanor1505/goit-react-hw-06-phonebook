@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { removeContactSlice } from 'redux/contactsSlice';
+import { removeContact } from 'redux/contactsSlice';
 import { Button, CotactItem } from './Contact.styled';
 
 export const Contact = ({ contact }) => {
@@ -11,7 +11,7 @@ export const Contact = ({ contact }) => {
         {contact.name}: {contact.number}
       </p>
       <Button
-        onClick={e => dispatch(removeContactSlice(e.target.id))}
+        onClick={e => dispatch(removeContact(e.target.id))}
         id={contact.id}
       >
         Delete

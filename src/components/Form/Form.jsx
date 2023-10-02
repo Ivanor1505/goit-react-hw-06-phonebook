@@ -8,7 +8,7 @@ import {
   StyledErrorMessage,
 } from './Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContactSlice } from 'redux/contactsSlice';
+import { addContacts } from 'redux/contactsSlice';
 import { getContacts } from 'redux/selectors';
 
 const formSchema = Yup.object({
@@ -35,7 +35,7 @@ export const AddContactForm = () => {
       alert('the contact already exists');
       return;
     }
-    dispatch(addContactSlice(contact));
+    dispatch(addContacts(contact));
   };
 
   function checkDuplicate(contact) {
